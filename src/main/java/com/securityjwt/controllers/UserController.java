@@ -8,6 +8,7 @@ import com.securityjwt.repositories.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,9 +46,22 @@ public class UserController {
         return ResponseEntity.ok(userEntity);
     }
 
-    @DeleteMapping("/deleteUser/{id}")
-    public String deleteUser(@RequestParam String id) {
-        userRepository.deleteById(Long.parseLong(id));
-        return "Deleted successfully the user with id ".concat(id);
+    @GetMapping("/accessAdmin")
+    @PreAuthorize("hasRole('ADMIN')")
+    public String accessAdmin() {
+        return "You're Admin";
     }
+
+    @GetMapping("/accessUser")
+    @PreAuthorize("hasRole('USER')")
+    public String accessUser() {
+        return "You're User";
+    }
+
+    @GetMapping("/accessInvited")
+    @PreAuthorize("hasRole('INVITED')")
+    public String accessInvited() {
+        return "You're Invited";
+    }
+
 }
