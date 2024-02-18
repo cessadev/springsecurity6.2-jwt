@@ -38,27 +38,7 @@ public class SpringSecurityJwtApplication {
 							.build()))
 					.build();
 
-			UserEntity userEntity2 = UserEntity.builder()
-					.email("colesprouse@gmail.com")
-					.username("cole")
-					.password(passwordEncoder.encode("12mrrtt"))
-					.roles(Set.of(RoleEntity.builder()
-							.name(ERoles.valueOf(ERoles.USER.name()))
-							.build()))
-					.build();
-
-			UserEntity userEntity3 = UserEntity.builder()
-					.email("lilireinhard@gmail.com")
-					.username("lily")
-					.password(passwordEncoder.encode("1qwe5"))
-					.roles(Set.of(RoleEntity.builder()
-							.name(ERoles.valueOf(ERoles.INVITED.name()))
-							.build()))
-					.build();
-
 			userRepository.save(userEntity);
-			userRepository.save(userEntity2);
-			userRepository.save(userEntity3);
 		};
 	}
 }

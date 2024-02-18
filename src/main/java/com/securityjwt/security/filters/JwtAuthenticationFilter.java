@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-
     private JwtUtils jwtUtils;
 
     public JwtAuthenticationFilter(JwtUtils jwtUtils){
