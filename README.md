@@ -1,10 +1,10 @@
-# Spring Security (v6.2) [Documentación en construcción]
+# Spring Security (v6.2) [Documentation in progress]
 
-En este repositorio (`SpringSecurity6.2WithJWT`) encontrarás la implementación y configuración de seguridad de Spring Security en su versión 6.2, así como la construcción de los filtros correspondientes a la autenticación y autorización por roles mediante el estándar JWT. Por favor considera que este proyecto está construido con Java 17 y Spring Boot 3.2.
+In this repository (`SpringSecurity6.2WithJWT`), you will find the implementation and configuration of security in Spring Security version 6.2, as well as the construction of the filters corresponding to authentication and role-based authorization using the JWT standard. Please note that this project is built with Java 17 and Spring Boot 3.2.
 
-## Estructura del proyecto
+## Project Structure
 
-**Directorio:** `src/main/java/com.securityjwt`
+**Directory:** `src/main/java/com.securityjwt`
 
 **File System:**
 
@@ -15,19 +15,19 @@ En este repositorio (`SpringSecurity6.2WithJWT`) encontrarás la implementación
 - **services**
 - *SpringSecurityJwtApplication.java* (Main.java)
 
-La aplicación está construida bajo un modelo de negocio sencillo pero suficiente para integrar la seguridad que ofrece Spring Security, enfocándose así en el tema en cuestión sin abordar conceptos generales de API Rest.
+The application is built on a simple business model but sufficient to integrate the security offered by Spring Security, thus focusing on the topic at hand without addressing general concepts of REST API.
 
-En los paquetes **security** y **services** podrás encontrar la lógica de programación directamente relacionada con la implementación de seguridad. Entiende el árbol de clases así:
+In the **security** and **services** packages, you will find the programming logic directly related to the implementation of security. Understand the class tree like this:
 
-**Directorio:** `/security>`
+**Directory:** `/security`
 
 ### SecurityConfig.java
 
-##### La configuración empleada NO hace uso del método `and()`, el cual está deprecated y será eliminado en futuras versiones de Spring Security, en su lugar hace uso de expresiones Lambda.
+##### It seems that your message is empty. Could you please provide the text you would like me to translate? The configuration used does NOT make use of the `and()` method, which is deprecated and will be removed in future versions of Spring Security; instead, it uses Lambda expressions.
 
-Esta clase acoje todas las configuraciones y filtros que se encargan de manejar la autenticación y autorización con Spring Security. En ella podrás encontrar los 3 métodos más comunes e importantes de toda la configuración:
+This class encompasses all the configurations and filters responsible for handling authentication and authorization with Spring Security. In it, you will find the three most common and important methods of the entire setup:
 
-#### Métodos:
+#### Methods:
 
 - `securityFilterChain()`
 - `passwordEncoder()`
@@ -35,15 +35,15 @@ Esta clase acoje todas las configuraciones y filtros que se encargan de manejar 
 
 #### securityFilterChain():
 
-En pocas palabras, `securityFilterChain()` es un director de orquesta para la seguridad de tu aplicación web. Se encarga de:
+In short, `securityFilterChain()` is a conductor for the security of your web application. It is responsible for:
 
-- Identificar qué peticiones necesitan ser protegidas.
-- Seleccionar los filtros de seguridad adecuados para cada petición.
-- Ejecutar esos filtros en el orden correcto.
+- Identify which requests need to be protected.
+- Select the appropriate security filters for each request.
+- Execute those filters in the correct order.
 
-Es como si `securityFilterChain()` revisara cada petición que llega a tu aplicación y decidiera qué medidas de seguridad hay que aplicar.
+It's as if `securityFilterChain()` reviews each request that comes to your application and decides what security measures need to be applied.
 
-**Sintaxis de código:**
+**Code syntax:**
 ```
 @Bean
 SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, AuthenticationManager authenticationManager) throws Exception {
@@ -69,20 +69,20 @@ SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, Authenticatio
 }
 ```
 
-*Beneficios:*
+*Benefits:*
 
-- Mayor flexibilidad: Puedes configurar diferentes filtros para diferentes tipos de peticiones.
-- Mejor rendimiento: Solo se ejecutan los filtros que realmente se necesitan.
-- Más seguridad: Te ayuda a proteger tu aplicación de ataques comunes.
+- Greater flexibility: You can set up different filters for different types of requests.
+- Better performance: Only the filters that are truly needed are executed.
+- More security: It helps you protect your application from common attacks.
 
 #### passwordEncoder():
 
-`passwordEncoder()` es un guardia de seguridad para las contraseñas de tu aplicación. Se encarga de:
+`passwordEncoder()` is a security guard for the passwords of your application. It is responsible for:
 
-- Codificar las contraseñas antes de almacenarlas en la base de datos.
-- Verificar si las contraseñas introducidas por los usuarios son correctas.
+- Encode the passwords before storing them in the database.
+- Verify if the passwords entered by the users are correct.
 
-**Sintaxis de código:**
+**Code syntax:**
 
 ```
 @Bean
@@ -91,21 +91,21 @@ PasswordEncoder passwordEncoder() {
 }
 ```
 
-*Beneficios:*
+*Benefits:*
 
-- Mayor seguridad: Las contraseñas codificadas son más difíciles de descifrar.
-- Protección contra ataques de fuerza bruta: Es más difícil adivinar una contraseña codificada.
-- Facilidad de uso: No necesitas preocuparte por cómo codificar las contraseñas manualmente.
+- Greater security: Encrypted passwords are harder to crack.
+- Protection against brute force attacks: It is harder to guess an encoded password.
+- Ease of use: You don't need to worry about how to manually code passwords.
 
 #### authenticationManager():
 
-`authenticationManager()` es un detective que verifica si los usuarios son quienes dicen ser. Entre sus funciones tenemos:
+`authenticationManager()` is a detective that verifies if users are who they say they are. Among its functions, we have:
 
-- Recibir las credenciales de los usuarios (como nombre de usuario y contraseña).
-- Validar las credenciales contra un almacén de usuarios (como una base de datos).
-- Devolver un objeto de autenticación si las credenciales son válidas.
+- Receive the users' credentials (such as username and password).
+- Validate the credentials against a user store. (como una base de datos).
+- Return an authentication object if the credentials are valid.
 
-**Sintaxis de código:**
+**Code syntax:**
 
 ```
 @Bean
@@ -119,8 +119,8 @@ public AuthenticationManager authenticationManager(HttpSecurity http) throws Exc
 }
 ```
 
-*Beneficios:*
+*Benefits:*
 
-- Mayor seguridad: Te ayuda a asegurarte de que solo los usuarios autorizados accedan a tu aplicación.
-- Facilidad de uso: No necesitas preocuparte por cómo verificar las credenciales manualmente.
-- Flexibilidad: Puedes usar diferentes tipos de almacenes de usuarios.
+- Greater security: It helps you ensure that only authorized users can access your application.
+- Ease of use: You don't need to worry about how to manually verify credentials.
+- Flexibility: You can use different types of user storage.
